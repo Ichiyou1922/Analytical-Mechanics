@@ -81,7 +81,7 @@
 
 ### 形式化
 - 一般化座標を $q_{k}(k=1, ..., n)$ とすれば，オイラーラグランジュ方程式は以下．
-- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial q_{k}}=0$
+- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial q_{k}}=0$ ただし，kの数だけ方程式が立つ．
 
 - 単振子(pendulum)
 1. 座標: 角度θを一般化座標qとする．
@@ -129,8 +129,9 @@
 
 2. ラグランジアン $L(q, \dot q)$ を，変数 $(q, p)$ を持つハミルトニアン $H(q, p)$ に変換する．
   - この操作をルジャンドル変換という．
-  - $H(q, p)=\sum_{i}p_{i} \dot q_{i} - L(q, \dot q)$
+  - $H(q, p)=\sum_{i}p_{i} \dot q_{i} - L(q, \dot q)$ (iは自由度)
   - 左辺の $\dot q$ は全て $p$ を使って書き換えなければいけない．
+  - 自由度が寄与する影響を全て足し合わせなければいけない．<-Hはエネルギーでありスカラーだから．
 
 3. ハミルトンの正準方程式
   - オイラーラグランジュ方程式(2階線形微分方程式が1つ)の代わりに，ハミルトン形式では1階の連立微分方程式が2つ現れる．これを正準方程式(Canonical Equation)と呼ぶ．
@@ -144,3 +145,22 @@
 \right.
 \end{equation}
 ```
+- このように符号が対になっている構造をシンプレティック構造といい，エネルギー保存やリウヴィルの定理を支えている．
+
+### 単振子のハミルトニアン導出
+1. 単振子のラグランジアンから，一般化運動量は $p_{\theta}=ml^2\theta ^2$i
+2. 1より $\dot \theta = \frac{p_{\theta}}{ml^2}$
+3. $H(q, p)=p_{\theta}\dot \theta - L(\theta, \dot \theta)$ にそれぞれ代入して $\dot q$ を消す．
+4. $H = \frac{1}{2}\frac{p_{\theta}^2}{ml^2} + mgl(1-cos\theta)$
+5. 正準形式で表すと，
+```math
+\begin{equation}
+\left\{ \,
+  \begin{aligned}
+  & \dot \theta = \frac{p_{\theta}}{ml^2} \\
+  & \dot p_{\theta} = -mglsin\theta 
+  \end{aligned}
+\right.
+\end{equation}
+```
+
