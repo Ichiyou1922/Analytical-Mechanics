@@ -62,7 +62,7 @@ int main(void) {
     printf("%f,%f,%f,%f\n", t, s.theta, s.omega, E);
 
     s = rk4_step(t, s, dt);
-    i += dt;
+    t += dt;
   }
 return 0;
 }
