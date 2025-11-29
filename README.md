@@ -121,7 +121,7 @@
   - 結果は以下の様になる．
 ![tension](images/tension.png)
 
-## ハミルトニアンと正準方程式
+## 第3回: ハミルトニアンと正準方程式
 - ラグランジュ形式では変数が位置 $q$ と速度 $\dot q$ だったが，速度というのは扱いにくい．
 1. より本質的な物理量である一般化運動量 $p$ を導入しよう．
   - 定義: $p_{i}\equiv \frac{\partial L}{\partial \dot q_{i}}$
@@ -145,7 +145,7 @@
 \right.
 \end{equation}
 ```
-- このように符号が対になっている構造をシンプレクティック構造といい，エネルギー保存やリウヴィルの定理を支えている．
+- このように符号が対になっている構造をシンプレクティック構造といい，エネルギー保存やリウヴィルの定理(位相空間の体積を変えない)を支えている．
 
 ### 単振子のハミルトニアン導出
 1. 単振子のラグランジアンから，一般化運動量は $p_{\theta}=ml^2\theta ^2$i
@@ -174,4 +174,42 @@ p_{n+1} = p_{n} + \dot p(\theta_{n})\Delta t = p_{n} - (mglsin\theta_{n})\Delta 
 ```math
 \theta_{n+1} = \theta_{n} + \dot \theta(p_{n+1})\Delta t = \theta_{n} + \frac{p_{n+1}}{ml^2}\Delta t
 ```
+- RK4とシンプレクティック法の違い
+  - RK4: 次の一歩を正確に．局所的な誤差を限りなく小さくできる，が，時間を進めるほど誤差は大きくなっていく．
+  - シンプレクティック法: 一歩の精度は低いが，超えてはいけないライン(幾何的構造を壊してしまうような)を永遠に守る．リウヴィルの定理という幾何的な性質がアルゴリズムに含まれる．
 
+## 第4回: カオスと二重振子
+- ラグランジュ形式を使おう．
+1. 変数を $(\theta_{1}, \theta_{2}, \dot \theta_{1}, \dot \theta_{2})$ とする．
+2. 一つ目の質点の位置を $(x_{1}, y_{1})$ ，二つ目の質点の位置を $(x_{2}, y_{2})$ とすれば，
+```math
+\begin{equation}
+\left\{ \,
+  \begin{aligned}
+  & x_{1} = l_{1}sin\theta_{1}\\
+  & y_{1} = -l_{1}cos\theta_{1}\\
+  & x_{2} = l_{1}sin\theta_{1} + l_{2}sin\theta_{2}\\
+  & y_{2} = -l_{1}cos\theta_{1} - l_{2}cos\theta_{2}\\
+  & \dot x_{1} = \dot \theta_{1}l_{1}cos\theta{1}\\
+  & \dot y_{1} = \dot \theta_{1}l_{1}sin\theta{1}\\
+  & \dot x_{2} = \dot \theta_{1}l_{1}cos\theta{1} + \dot \theta_{2}l_{2}cos\theta{2}\\
+  & \dot y_{2} = \dot \theta_{1}l_{1}sin\theta{1} + \dot \theta_{2}l_{2}sin\theta{2}
+  \end{aligned}
+\right.
+\end{equation}
+```
+3. ラグランジアンLを求めると，
+```math
+L = \frac{1}{2}(m_{1}+m_{2})\dot \theta_{1}^2 l_{1}^2 + \frac{1}{2}m_{2}\dot \theta_{2}^2 l_{2}^2 + m_{2}\dot \theta_{1}\dot \theta_{2} l_{1} l_{2} cos(\theta_{1}-\theta_{2}) + (m_{1}+m_{2})gl_{1}cos\theta_{1} + m_{2}gl_{2}cos\theta_{2}
+```
+4. $\ddot \theta_{1}, \ddot \theta_{2}$ について解く
+```math
+変数定義: \delta=\theta_{1}-\theta_{2}, M = 2m_{1} + m_{2}\\
+Num_{1} = -g(M)sin\theta_{1} - m_{2}gsin(\theta_{1}-2\theta_{2})-2sin\delta * m_{2}(\dot \theta_{2}^2 l_{2} + \dot \theta_{1}^2 l_{1}cos\delta)\\
+Den_{1} = l_{1}(M - m_{2}cos(2\delta))\\
+\ddot \theta_{1} = \frac{Num_{1}}{Den_{1}}\\
+\\
+Num_{2} = 2sin\delta(\dot \theta_{1}^2 l_{1}(m_{1}+m_{2})+g(m_{1}+m_{2})cos\theta_{1}+\dot \theta_{2}^2 l_{2}m_{2}cos\delta)\\
+Den_{2} = l_{2}(M-m_{2}cos(2\delta))\\
+\ddot \theta_{2} = \frac{Num_{2}}{Den_{2}}
+```
