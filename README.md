@@ -204,12 +204,23 @@ L = \frac{1}{2}(m_{1}+m_{2})\dot \theta_{1}^2 l_{1}^2 + \frac{1}{2}m_{2}\dot \th
 ```
 4. $\ddot \theta_{1}, \ddot \theta_{2}$ について解く
 ```math
-変数定義: \delta=\theta_{1}-\theta_{2}, M = 2m_{1} + m_{2} \par
-Num_{1} = -g(M)sin\theta_{1} - m_{2}gsin(\theta_{1}-2\theta_{2})-2sin\delta * m_{2}(\dot \theta_{2}^2 l_{2} + \dot \theta_{1}^2 l_{1}cos\delta) \par
-Den_{1} = l_{1}(M - m_{2}cos(2\delta)) \par
-\ddot \theta_{1} = \frac{Num_{1}}{Den_{1}} \par
-\par
-Num_{2} = 2sin\delta(\dot \theta_{1}^2 l_{1}(m_{1}+m_{2})+g(m_{1}+m_{2})cos\theta_{1}+\dot \theta_{2}^2 l_{2}m_{2}cos\delta) \par
-Den_{2} = l_{2}(M-m_{2}cos(2\delta)) \par
+変数定義: \delta=\theta_{1}-\theta_{2}, M = 2m_{1} + m_{2} 
+```
+```math
+Num_{1} = -g(M)sin\theta_{1} - m_{2}gsin(\theta_{1}-2\theta_{2})-2sin\delta * m_{2}(\dot \theta_{2}^2 l_{2} + \dot \theta_{1}^2 l_{1}cos\delta) 
+```
+```math
+Den_{1} = l_{1}(M - m_{2}cos(2\delta)) 
+```
+```math
+\ddot \theta_{1} = \frac{Num_{1}}{Den_{1}} 
+```
+```math
+Num_{2} = 2sin\delta(\dot \theta_{1}^2 l_{1}(m_{1}+m_{2})+g(m_{1}+m_{2})cos\theta_{1}+\dot \theta_{2}^2 l_{2}m_{2}cos\delta) 
+```
+```math
+Den_{2} = l_{2}(M-m_{2}cos(2\delta)) 
+```
+```math
 \ddot \theta_{2} = \frac{Num_{2}}{Den_{2}}
 ```
