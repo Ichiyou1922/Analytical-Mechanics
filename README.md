@@ -141,6 +141,6 @@
   & \dot q = \frac{\partial H}{\partial p}
   & \dot p = -\frac{\partial H}{\partial q}
   \end{aligned}
-\right,
+\right.
 \end{equation}
 ```
