@@ -49,7 +49,7 @@ int main(void) {
   double dt = 0.05;
   double t_max = 10.0;
   int steps = (int)(t_max / dt);
-
+  
   State s;
   s.theta = 1.0;
   s.omega = 0.0;
@@ -57,9 +57,12 @@ int main(void) {
   printf("time,theta,omega,energy\n");
   //main loop
   for(int i = 0; i < steps; i++) {
+    // エネルギーE
     double E = 0.5 * M * pow(L, 2) * pow(s.omega, 2) + M * G * L * (1 - cos(s.theta));
-    
-    printf("%f,%f,%f,%f\n", t, s.theta, s.omega, E);
+    // 張力S
+    double S = M * G * cos(s.theta) + M * L * pow(s.omega, 2);
+
+    printf("%f,%f,%f,%f,%f\n", t, s.theta, s.omega, E, S);
 
     s = rk4_step(t, s, dt);
     t += dt;

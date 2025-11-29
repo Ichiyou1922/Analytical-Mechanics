@@ -97,7 +97,7 @@
 ### 4次ルンゲクッタ法(RK4)
 - 微分方程式を数値的に積分する．
 1. 準備: 数値計算では2階微分方程式を直接扱えないので，変数を増やして1階に落とす．
-  - $\dot \theta = \omega, \dot \omega = -\frac{g}{l}sin\theta
+  - $\dot \theta = \omega, \dot \omega = -\frac{g}{l}sin\theta$
   - 一般形 $\frac{dy}{dt}=f(t, y)$ で書けば，状態ベクトル $y=[\theta, \omega]$ ,関数 $f(y)=[\omega, -\frac{g}{l}sin\theta]$
 
 2. θとωの情報を持つ構造体Stateを定義する．
