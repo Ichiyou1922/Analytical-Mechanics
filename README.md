@@ -138,8 +138,8 @@
 \begin{equation}
 \left\{ \,
   \begin{aligned}
-  & \dot q = \frac{\partial H}{\partial p}
-  & \dot p = -\frac{\partial H}{\partial q}
+  & \dot q = \frac{\partial H}{\partial p} \\
+  & \dot p = -\frac{\partial H}{\partial q} 
   \end{aligned}
 \right.
 \end{equation}
