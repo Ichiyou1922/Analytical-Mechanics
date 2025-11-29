@@ -71,12 +71,42 @@
 ## 第二回: 一般化座標とオイラーラグランジュ方程式
 - ニュートン力学では極座標や回転座標系を使うと，遠心力やコリオリ力などの「見かけの力」を考えなければいけなかった．
 - 解析力学ではラグランジアン $L(q, \dot q)$ さえわかれば機械的に正しい運動方程式が得られる．
+- 一般化座標とは
+  - 系の状態を一意に決定するために必要な，最小限の独立なパラメータ群のこと．
+  1. 拘束(Constraints)を探す
+    - 例えば振子なら，x, yと二つのパラメータがあるが，紐の長さlによって拘束が一つある->自由度=2-1=1->変数は一つでいい．
+  2. 計算が楽になる変数を選ぼう
+    - 1.の例を使うと，例えば変数にxも選べるが， $y=±\sqrt{l^2 - x^2}$ となり，計算が大変．θを選べば， $x=lsin\theta, y=l-lcos\theta$ となり，θがどんな値でも拘束条件は満たされる．
+
 
 ### 形式化
 - 一般化座標を $q_{k}(k=1, ..., n)$ とすれば，オイラーラグランジュ方程式は以下．
-- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial \dot q_{k}}=0$
+- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial q_{k}}=0$
 
 - 単振子(pendulum)
 1. 座標: 角度θを一般化座標qとする．
 2. 速度: 質点の速度 $v = l \dot \theta$
 3. 高さ: 最下点を基準にすると $h=l-lcos\theta$
+4. $T=\frac{1}{2}m(l\dot \theta)^2$
+5. $V=mg(l-lcos\theta)$
+6. $L-T-v$ に4, 5の結果を代入する．
+7. E-L方程式を解く
+8. $\dotdot \theta = -\frac{g}{l}sin\theta$ が得られる．
+  - 得られた非線形微分方程式をどう解こう？
+
+### 4次ルンゲクッタ法(RK4)
+- 微分方程式を数値的に積分する．
+1. 準備: 数値計算では2階微分方程式を直接扱えないので，変数を増やして1階に落とす．
+  - $\dot \theta = \omega, \dot \omega = -\frac{g}{l}sin\theta
+  - 一般形 $\frac{dy}{dt}=f(t, y)$ で書けば，状態ベクトル $y=[\theta, \omega]$ ,関数 $f(y)=[\omega, -\frac{g}{l}sin\theta]$
+
+2. θとωの情報を持つ構造体Stateを定義する．
+3. 微分の計算関数`Strate func(double t, State s)`を定義する．
+  - 入力: 現在の時刻t, 現在の状態 $s(\theta, \omega)$
+  - 出力: その瞬間の変化率 $\frac{ds}{dt}(\dot \theta, \dot, \omega)$
+  - 中身: 返り値の`.theta`には`s.omega`を，`.omega`には`-(G/L)*sin(s.theta)`を入れて返す．
+
+4. RK4ステップ関数`State rk4_step(double t, State current, double dt)`
+  - RK4の公式通りにk1, k2, k3, k4を計算して，次の状態を返す．
+  - ベクトル演算はC言語にはないから，`theta`と`omega`は個別に計算しないといけない．
+
