@@ -65,17 +65,16 @@ int main(void) {
       y[k] = y_old;
     }
 
-    if (iter % 1000 == 0) {
-      printf("iter: %d->%f\n", iter, S_new);
-    }
+    iter++;
   }
 
   // 結果を表示
   int i = 0;
   while (i < N + 1) {
-    double t = i * t;
+    double t = i * dt;
     double y_exact = H - 0.5 * G * pow(t, 2);//比較用解析解
-    printf("%f, %f, %f/n", t, y[i], y_exact);
+    printf("%f, %f, %f\n", t, y[i], y_exact);
+    i++;
   }
   
   return 0;
