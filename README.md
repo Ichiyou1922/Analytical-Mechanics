@@ -74,7 +74,7 @@
 
 ### 形式化
 - 一般化座標を $q_{k}(k=1, ..., n)$ とすれば，オイラーラグランジュ方程式は以下．
-- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial \dot q_{k}}$
+- $\frac{d}{dt}(\frac{\partial L}{\partial \dot q_{k}})-\frac{\partial L}{\partial \dot q_{k}}=0$
 
 - 単振子(pendulum)
 1. 座標: 角度θを一般化座標qとする．
