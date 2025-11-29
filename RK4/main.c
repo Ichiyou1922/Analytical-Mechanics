@@ -34,7 +34,7 @@ State rk4_step(double t, State current, double dt) {
   temp.omega = current.omega + k2.omega * dt * 0.5;
   k3 = func(t + dt * 0.5, temp);
 
-  temp.omega = current.omega + k3.omega * dt;
+  temp.theta = current.theta + k3.theta * dt;
   temp.omega = current.omega + k3.omega * dt;
   k4 = func(t + dt, temp);
 
