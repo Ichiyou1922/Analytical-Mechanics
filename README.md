@@ -91,7 +91,7 @@
 5. $V=mg(l-lcos\theta)$
 6. $L-T-v$ に4, 5の結果を代入する．
 7. E-L方程式を解く
-8. $\dotdot \theta = -\frac{g}{l}sin\theta$ が得られる．
+8. $\ddot \theta = -\frac{g}{l}sin\theta$ が得られる．
   - 得られた非線形微分方程式をどう解こう？
 
 ### 4次ルンゲクッタ法(RK4)
@@ -103,10 +103,14 @@
 2. θとωの情報を持つ構造体Stateを定義する．
 3. 微分の計算関数`Strate func(double t, State s)`を定義する．
   - 入力: 現在の時刻t, 現在の状態 $s(\theta, \omega)$
-  - 出力: その瞬間の変化率 $\frac{ds}{dt}(\dot \theta, \dot, \omega)$
+  - 出力: その瞬間の変化率 $\frac{ds}{dt}(\dot \theta, \dot \omega)$
   - 中身: 返り値の`.theta`には`s.omega`を，`.omega`には`-(G/L)*sin(s.theta)`を入れて返す．
 
 4. RK4ステップ関数`State rk4_step(double t, State current, double dt)`
   - RK4の公式通りにk1, k2, k3, k4を計算して，次の状態を返す．
   - ベクトル演算はC言語にはないから，`theta`と`omega`は個別に計算しないといけない．
 
+### 位相空間(Phase Space)を描こう
+- 縦軸に速度 $\dot q$ (今回omega)，横軸に位置 $q$ (今回theta)を取ったグラフ．
+- エネルギーが保存されているならその軌道は閉じた円(楕円)になるはず．
+![RK4の実行結果と位相空間](images/phase_space.png)
