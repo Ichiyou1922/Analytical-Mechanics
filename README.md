@@ -134,6 +134,7 @@
 
 3. ハミルトンの正準方程式
   - オイラーラグランジュ方程式(2階線形微分方程式が1つ)の代わりに，ハミルトン形式では1階の連立微分方程式が2つ現れる．これを正準方程式(Canonical Equation)と呼ぶ．
+```math
 \begin{equation}
 \left\{ \,
   \begin{aligned}
@@ -142,3 +143,4 @@
   \end{aligned}
 \right,
 \end{equation}
+```
