@@ -114,3 +114,31 @@
 - 縦軸に速度 $\dot q$ (今回omega)，横軸に位置 $q$ (今回theta)を取ったグラフ．
 - エネルギーが保存されているならその軌道は閉じた円(楕円)になるはず．
 ![RK4の実行結果と位相空間](images/phase_space.png)
+
+### 消えた拘束力の考慮
+- ラグランジアンLを設定したとき，拘束力は無視された．今回ならば張力S．この情報がほしいときはどうしよう？
+  - 運動方程式を拘束力方向に書き直せばいい．
+  - 結果は以下の様になる．
+![tension](images/tension.png)
+
+## ハミルトニアンと正準方程式
+- ラグランジュ形式では変数が位置 $q$ と速度 $\dot q$ だったが，速度というのは扱いにくい．
+1. より本質的な物理量である一般化運動量 $p$ を導入しよう．
+  - 定義: $p_{i}\equiv \frac{\partial L}{\partial \dot q_{i}}$
+  - 単振子の時 $L=\frac{1}{2}ml^2 \dot \theta^2 - mgl(1-cos\theta)$ であるから $p_{\theta}=\frac{\partial L}{\partial \dot \theta}=ml^2 \dot \theta$ であり，角運動量を表している．
+
+2. ラグランジアン $L(q, \dot q)$ を，変数 $(q, p)$ を持つハミルトニアン $H(q, p)$ に変換する．
+  - この操作をルジャンドル変換という．
+  - $H(q, p)=\sum_{i}p_{i} \dot q_{i} - L(q, \dot q)$
+  - 左辺の $\dot q$ は全て $p$ を使って書き換えなければいけない．
+
+3. ハミルトンの正準方程式
+  - オイラーラグランジュ方程式(2階線形微分方程式が1つ)の代わりに，ハミルトン形式では1階の連立微分方程式が2つ現れる．これを正準方程式(Canonical Equation)と呼ぶ．
+\begin{equation}
+\left\{ \,
+  \begin{aligned}
+  & \dot q = \frac{\partial H}{\partial p}
+  & \dot p = -\frac{\partial H}{\partial q}
+  \end{aligned}
+\right,
+\end{equation}
